@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Drive Track</title>
+  <script type="text/javascript" src="../assets/js/jquery.min.js"></script>
+  <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css" />
+  <script type="text/javascript" src="../assets/bootstrap/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+</head>
+
+<body>
+    <div class="navigation col-lg-1">
+        <h1 class="head-title">
+          <a href="./home.html">
+            <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+            Drive Track
+          </a>
+        </h1>
+        <nav id="navigation">
+          <a href="../views/employee.html">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            Repartidores
+          </a>
+          <a href="../views/order.html">
+            <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+            Pedidos
+          </a>
+          <a href="../views/tracking.html">
+            <span class="glyphicon glyphicon-screenshot" aria-hidden="true"></span>
+            Rastreo
+          </a>
+        </nav>
+    
+        <nav id="user_logged">
+          <div class="user-image">
+            <img id="image-logged" src="../uploads/users/default-admin.png" />
+          </div>
+          <span id="identity_name">
+            NOMBRE USUARIO
+          </span>
+    
+          <a href="../views/user-edit.html">
+            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+            Mis datos
+          </a>
+          <a href="../index.html" class="btn-logout">
+            <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+            Salir
+          </a>
+        </nav>
+      </div>
+
+      <div class="col-lg-9 col-lg-offset-1">
+          <h1>PEDIDOS</h1>
+          <div class="section">
+            <nav id="navigation">
+              <a href="./order-add.html">
+                <span class="glyphicon glyphicon-plus btn btn-success" aria-hidden="true"></span>
+                Agregar Pedidos
+              </a>
+            </nav>
+            <h2>Lista de pedidos inactivos</h2>
+            <div class="list-header">
+                <ul>
+                  <li>
+                    <p></p>
+                    <p>Numero de pedido</p>
+                    <p>Estatus</p>
+                    <p>Repartidor</p> </li>
+                    <p></p>
+                </ul>
+              </div>
+            <div class="list">
+              <ul>
+                <li>
+                  <img src="../uploads/icons/box.png"/>
+                  <p id="lblNumber">Numero de pedido</p>
+                  <p id="lblState">Estatus</p>
+                  <p id="lblUser">Repartidor</p>
+                  <input id="btnDelete-user" type="button" class="btn btn-primary" value="Asignar Repartidor">
+                </li>
+              </ul>
+            </div>
+            <h2>Lista de pedidos en camino</h2>
+            <div class="list-header">
+                <ul>
+                  <li>
+                    <p></p>
+                    <p>Numero de pedido</p>
+                    <p>Estatus</p>
+                    <p>Repartidor</p> </li>
+                    <p></p>
+                </ul>
+              </div>
+            <div class="list">
+              <ul>
+                <li>
+                  <img src="../uploads/icons/box.png"/>
+                  <p id="lblNumber-road">Numero de pedido</p>
+                  <p id="lblState-road">Estatus</p>
+                  <p id="lblUser-road">Repartidor</p></li>
+              </ul>
+            </div>
+            <h2>Lista de pedidos entregados</h2>
+            <div class="list-header">
+                <ul>
+                  <li>
+                    <p></p>
+                    <p>Numero de pedido</p>
+                    <p>Estatus</p>
+                    <p>Repartidor</p> </li>
+                    <p></p>
+                </ul>
+              </div>
+            <div class="list">
+              <ul>
+                <li>
+                  <img src="../uploads/icons/box.png"/>
+                  <p id="lblNumber-delivered">Numero de pedido</p>
+                  <p id="lblState-delivered">Estatus</p>
+                  <p id="lblUser-delivered">Repartidor</p></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+</body>
+
+</html>
