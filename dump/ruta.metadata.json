@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"ANTE.ruta"}],"uuid":"db4bf75dda4a43f19bb0f420b0c736ef"}
