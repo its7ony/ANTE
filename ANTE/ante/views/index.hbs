@@ -7,17 +7,23 @@
   <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
   <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="js/home.js"></script>
-  <link rel="stylesheet" href="stylesheets/style.css" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
 
 <body onload="iniciar()">
-  <div class="col-lg-6 login">
-    <div class="col-lg-3">
+  <div class="Fondo">
+      <div class="Fondo2">
+          <br>
+    <div class="login">
+        <div>
+            <img alt="Logotipo" id="imgLogo" src="assets/images/logo.png">
+        </div>
+    <div class="col-lg-12">
       <h1>Drive Track</h1>
-      <h3>LOGIN</h3>
+        <h3>LOGIN</h3>
     </div>
-
-    <form class="col-lg-10">
+        
+    <form class="col-lg-12" id="formLogin">
       <p>
         <label>Usuario:</label>
         <input type="text" class="form-control" required  id="txtUser"/>
@@ -29,6 +35,9 @@
         <input type="button" value="Aceptar" class="btn btn-primary" onclick="enviar()" />
     </form>
   </div>
+      </div>
+      </div>
+    
 </body>
 
 </html>
