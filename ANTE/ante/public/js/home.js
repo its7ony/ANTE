@@ -1,5 +1,5 @@
 function iniciar(){
-    if(localStorage.getItem('user')!= null){
+    if(localStorage.getItem('user') != null && localStorage.getItem('rol') == 0 ){
         window.location.href = "http://localhost:3000/main";
     }
 }
@@ -12,6 +12,7 @@ function enviar(){
              function (data,status){
                if(data.length > 0){
                     localStorage.setItem('user',data[0].username.toString());
+                    localStorage.setItem('rol',data[0].rol.toString());
                     window.location.href= "http://localhost:3000/main";
                }else{
                    alert("Usuario o Contraseña Incorrecto");
@@ -45,3 +46,13 @@ function salir(){
     localStorage.clear();
     window.location.href = "http://localhost:3000/";
 }
+
+function mouseoverPass(obj) {
+    var obj = document.getElementById('txtPwd');
+    obj.type = "text";
+  }
+
+  function mouseoutPass(obj) {
+    var obj = document.getElementById('txtPwd');
+    obj.type = "password";
+  }

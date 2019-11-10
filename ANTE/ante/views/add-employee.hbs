@@ -8,12 +8,13 @@
   <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
   <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="/js/home.js"></script>
-  <script type="text/javascript" src="/js/user-edit.js"></script>
+  <script type="text/javascript" src="/js/add-employee.js"></script>
+  <script type="text/javascript" src="/js/md5.min.js"></script>
   <link rel="stylesheet" href="stylesheets/style.css" />
 </head>
 
 
-<body onload="getUser()">
+<body onload="cargar()">
     <div class="navigation col-lg-1">
         <h1 class="head-title">
           <a href="http://localhost:3000/main">
@@ -53,35 +54,31 @@
           </a>
         </nav>
       </div>    
-  <div class="col-lg-6 col-lg-offset-2">
-    <div class="jumbotron">
-      <form class="col-lg-10">
-        <h2> MIS DATOS</h2>
-        </br>
-        <p>
-          <label>Usuario:</label>
-          <input type="text" id="txtUsuario" class="form-control" readonly/>
-        </p>
-        <p>
-          <label>Nombre:</label>
-          <input type="text" id="txtNombre" class="form-control" required />
-        </p>
-        <p>
-          <label>Paterno:</label>
-          <input type="text" id="txtPaterno" class="form-control" required />
-        </p>
-        <p>
-          <label>Materno:</label>
-          <input type="text" id="txtMaterno" class="form-control" required />
-        </p>
-        <p>
-          <label>Contraseña:</label>
-          <input type="password" id="txtPwd" class="form-control" required onmouseover="mouseoverPass();" onmouseout="mouseoutPass();"/>
-        </p>
-        </br>
-        <input type="button" value="Aceptar" class="btn btn-primary" onclick="updateUser()" />
-      </form>
+     <div class="col-lg-6 col-lg-offset-2">
+        <div class="jumbotron">
+            <form class="col-lg-10">
+                <h2>REGISTRO DE REPARTIDOR</h2>
+                </br>
+                <p>
+                    <label>Usuario:</label>
+                    <input type="text" id="txtUsuario" class="form-control" required  placeholder="Nombre de Usuario"/>
+                </p>
+                <p>
+                    <label>Nombre:</label>
+                    <input type="text" id="txtNombre" class="form-control" required placeholder="Nombre(s)"/>
+                </p>
+                <p>
+                    <label>Paterno:</label>
+                    <input type="text" id="txtPaterno" class="form-control" required placeholder="Apellido Paterno"/>
+                </p>
+                <p>
+                    <label>Materno:</label>
+                    <input type="text" id="txtMaterno" class="form-control" required  placeholder="Apellido Materno"/>
+                </p>
+                </br>
+                <input type="button" value="Aceptar" class="btn btn-primary" onclick="crear()"/>
+            </form>
+        </div>
     </div>
-  </div>
 </body>
 </html>

@@ -37,7 +37,7 @@ html, body{
     font-family: sans-serif;
     padding-left: 40px;
     padding-right: 40px;
-    font-size: 15px;
+    font-size: 12px;
     font-weight: 600;
     color: whitesmoke;
     background-color: cadetblue;
@@ -55,63 +55,21 @@ html, body{
     height: 100%;
 }
 
-/*LISTAS*/
-.list ul{
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  background-color: #333333;
-  overflow-y:scroll;
-}
-.list li{
-	width: 100%;
-}
-
-.list li img{
-	float: left;
-	width: 90px;
-	height: 90px;
-	padding: 10px;
-}
-
-.list li p{
-	display: block;
-	color: white;
-	text-align: center;
-	padding: 32px;
-	margin-top: 4px;
-	text-decoration: none;
-	float: left;
-  }
-
-  .list li .btn{
-	  float: right;
-	  margin: 30px;
-  }
-
-/*HEADER LIST*/
-.list-header ul{
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	background-color:darkgreen;
-	overflow: hidden;
-  }
-  .list-header li{
-	  width: 100%;
+/*Tabla*/
+  td, tr {
+	  background-color: #1C1C1F;
+	  color: #FFF;
+	  vertical-align: middle;
+	  font-size:medium;
   }
   
-  .list-header li p{
-	  display: block;
-	  color: white;
-	  text-align: center;
-	  margin: 5px;
-	  margin-left: 38px;
-	  margin-right: 37px;
-	  text-decoration: none;
-	  text-align: center;
-	  float: left;
+  .scrollbar {
+	position: relative;
+	height: 200px;
+	overflow-y: auto;
+	display: block;
 	}
+	
 
 
 /*MAPA*/
