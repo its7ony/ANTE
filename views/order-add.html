@@ -8,6 +8,82 @@
     <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css" />
     <script type="text/javascript" src="../assets/bootstrap/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../assets/css/styles.css" />
+    
+    <!-- ESTILO DEL MODAL -->
+    <link rel="stylesheet" href="../assets/css/modal-style.css" />
+    <!-- SCRIPTS PARA EL USO DEL MODAL -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHCAZ59-XRJXCmaKGGeLhGZ_AaQXU5J54&libraries=places"></script>
+
+    
+
+<script>
+    function init() {
+   var markers = [];
+   var map = new google.maps.Map(document.getElementById('map-canvas'), {
+     center: {
+       lat: 21.1523342,
+       lng: -101.7135019,
+     },
+     zoom: 14
+   });
+
+     var input = /** @type {HTMLInputElement} */(
+      document.getElementById('pac-input'));
+  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+  var searchBox = new google.maps.places.SearchBox(document.getElementById('pac-input'));
+
+  google.maps.event.addListener(searchBox, 'places_changed', function() {
+    var places = searchBox.getPlaces();
+
+    if (places.length == 0) {
+      return;
+    }
+    for (var i = 0, marker; marker = markers[i]; i++) {
+      marker.setMap(null);
+    }
+
+    // For each place, get the icon, place name, and location.
+    markers = [];
+    var bounds = new google.maps.LatLngBounds();
+    for (var i = 0, place; place = places[i]; i++) {
+      var image = {
+        url: place.icon,
+        size: new google.maps.Size(71, 71),
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(17, 34),
+        scaledSize: new google.maps.Size(25, 25)
+      };
+
+      // Create a marker for each place.
+      var marker = new google.maps.Marker({
+        map: map,
+        icon: image,
+        title: place.name,
+        position: place.geometry.location
+      });
+
+      markers.push(marker);
+
+      bounds.extend(place.geometry.location);
+    }
+
+    map.fitBounds(bounds);
+  });
+  // [END region_getplaces]
+
+  // Bias the SearchBox results towards places that are within the bounds of the
+  // current map's viewport.
+  google.maps.event.addListener(map, 'bounds_changed', function() {
+    var bounds = map.getBounds();
+    searchBox.setBounds(bounds);
+  });
+        
+}
+ google.maps.event.addDomListener(window, 'load', init);
+    </script>
+   
+    
 </head>
 
 <body>
@@ -53,24 +129,81 @@
     </div>
 
     <div class="col-lg-6 col-lg-offset-2">
+        <br>
+                        <!-- Trigger/Open The Modal -->
+        <button id="myBtn" class="btn" style="background-color: lightgray; color: black">Buscar Direccion</button>
+<br>
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>Agregue la direccion del pedido</h2>
+    </div>
+      
+    <div class="modal-body">
+       <input id="pac-input" class="controls" type="text" placeholder="Introduzca una direccion">
+        
+<div class="container" id="map-canvas" style="height:420px;"></div>
+    </div>
+    <div class="modal-footer">
+        <a><h3 class="btn btn-primary" style="margin-bottom: 10px">Registrar</h3></a>
+    </div>
+  </div>
+
+</div>
         <div class="jumbotron">
-            <form class="col-lg-10">
+            <form class="col-lg-9">
                 <h2> REGISTRO DE PEDIDOS</h2>
-                </br>
+                
                 <p>
                     <label>Numero de orden:</label>
-                    <input type="text" class="form-control" required />
+                    <input type="text" class="form-control" />
                 </p>
                 <p>
                     <label>Descripcion:</label>
-                    <textarea name="textarea" rows="10" cols="50" required placeholder="Registrar los productos de la orden..."></textarea>
+                    <textarea name="textarea" rows="10" cols="50" placeholder="Registrar los productos de la orden..."></textarea>
                 </p>
-
-                </br>
+            <p>
+                    <label>Dirección:</label>
+                    <input type="text" class="form-control" disabled/>
+                </p>
+            <br>
+            
                 <input type="submit" value="Aceptar" class="btn btn-primary" />
             </form>
-        </div>
+    
     </div>
+
+    <script>
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
 </body>
 
 </html>
