@@ -3,7 +3,6 @@ function getEmployees(){
     cargar();   
     $.post('/getEmployees',
     function (data){
-        debugger;
         if(data[0]!=[]){
             let html = "";
             const array = data;
@@ -28,6 +27,8 @@ function getEmployees(){
         }
     });
 }
+
+
 
 function deleteEmployee(id){
     let usuario = "lblUserName"+id;

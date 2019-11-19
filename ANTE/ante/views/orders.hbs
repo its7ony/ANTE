@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Drive Track</title>
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
+    <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/orders.js"></script>
+    <script type="text/javascript" src="/js/home.js"></script>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    
+</head>
+
+<body onload="obtenerOrdenes()">
+        <div class="navigation col-lg-1">
+        <h1 class="head-title">
+          <a href="http://localhost:3000/main">
+            <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+               Drive Track
+          </a>
+        </h1>
+        <nav id="navigation">
+          <a href="http://localhost:3000/employees">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            Repartidores
+          </a>
+          <a href="http://localhost:3000/orders">
+            <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+            Pedidos
+          </a>
+          <a href="http://localhost:3000/tracking">
+            <span class="glyphicon glyphicon-screenshot" aria-hidden="true"></span>
+            Rastreo
+          </a>
+        </nav>
+      
+        <nav id="user_logged">
+          <div class="user-image">
+            <img id="image-logged" src="images/users/default-admin.png"/>
+          </div>
+          <span id="identity_name">
+          </span>
+      
+          <a href="http://localhost:3000/user">
+            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+            Mis datos
+          </a>
+          <a href="#" class="btn-logout">
+            <span class="glyphicon glyphicon-log-out" aria-hidden="true" onclick="salir()"></span>
+            Salir
+          </a>
+        </nav>
+      </div>
+
+      <div class="col-lg-9 col-lg-offset-1">
+          <div class="section">
+              <a href="http://localhost:3000/add-order">
+                <span class="glyphicon glyphicon-plus btn btn-success" aria-hidden="true"></span>
+                Agregar Pedidos
+              </a>
+
+            <!--Pedidos Pendientes-->
+             <h3>Pedidos Pendientes</h3>
+            <div class="scrollbar">
+                    <table class="table">
+                    <thead>
+                        <tr style="background-color:rgb(163, 139, 4);">
+                        <th scope="col">No Pedido</th>
+                        <th scope="col">Estatus</th>
+                        <th scope="col">Repartidor</th>
+                        </tr>
+                    </thead>
+                    <tbody id="Pendientes" class="Pendientes"></tbody>
+                    </table>   
+                
+            </div>
+
+                  <!--Pedidos Activos-->
+             <h2>Pedidos Activos</h2>
+            <div class="scrollbar">
+                    <table class="table">
+                    <thead>
+                        <tr style="background-color: rgba(0, 109, 0, 0.733);">
+                        <th scope="col">No Pedido</th>
+                        <th scope="col">Estatus</th>
+                        <th scope="col">Repartidor</th>
+                        </tr>
+                    </thead>
+                    <tbody id="Activos" class="Activos"></tbody>
+                    </table>   
+                
+            </div>
+
+            <!--Pedidos Entregados-->
+             <h2>Pedidos Entregados</h2>
+            <div class="scrollbar">
+                    <table class="table">
+                    <thead>
+                        <tr style="background-color: rgb(122, 13, 13);">
+                        <th scope="col">No Pedido</th>
+                        <th scope="col">Estatus</th>
+                        <th scope="col">Repartidor</th>
+                        </tr>
+                    </thead>
+                    <tbody id="Entregados" id="Entregados"></tbody>
+                    </table>        
+            </div>
+        </div>
+        </div>
+</body>
+</html>

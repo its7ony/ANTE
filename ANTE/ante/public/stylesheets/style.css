@@ -65,7 +65,7 @@ html, body{
   
   .scrollbar {
 	position: relative;
-	height: 200px;
+	height: 120px;
 	overflow-y: auto;
 	display: block;
 	}
@@ -140,3 +140,21 @@ html, body{
 	cursor:pointer;
 }
 
+#Pendientes>tr>td{
+	background-color: #eee;
+	color:#333;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-size: medium;
+}
+
+#Activos>tr>td{
+	background-color: #eee;
+	color:#333;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+#Entregados>tr>td{
+	background-color: #eee;
+	color:#333;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}

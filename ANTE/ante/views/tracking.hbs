@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <title>Drive Track</title>
-  <script type="text/javascript" src="/js/jquery.min.js"></script>
-  <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
-  <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="/js/home.js"></script>
-  <link rel="stylesheet" href="stylesheets/style.css" />
-
+  <meta charset="utf-8">
+  <title>Drive Track</title>
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
+    <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/tracking.js"></script>
+    <script type="text/javascript" src="/js/home.js"></script>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="/stylesheets/sweetalert2.min.css">  
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBHCAZ59-XRJXCmaKGGeLhGZ_AaQXU5J54&callback=initMap&libraries=places"
+    async defer></script>
 </head>
 
-<body onload="cargar()">
-      <div class="navigation col-lg-1">
+<body onload="obtenerPendientes()">
+  <div class="navigation col-lg-1">
         <h1 class="head-title">
           <a href="http://localhost:3000/main">
             <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
@@ -50,18 +53,13 @@
             Salir
           </a>
         </nav>
-      </div>
-      
-      <div class="col-lg-6 col-lg-offset-2" >
-        <div class="jumbotron">
-            <h1>Drive Track</h1>
-            <h3>Inicio de Sesion exitoso</h3>
-            <p><a href="http://localhost:3000/add-order" class="btn btn-primary btn-lg" role="button">Registrar pedido</a></p>
-        </div>
+  </div>
+  <div class="col-lg-11">
+    <div>
+      <h3 id="Titulo">Rastreo de pedidos</h3>
+      <select id="Pendientes"  onchange="traerRuta();"></select>
+      <div class="container" id="map"></div>
     </div>
-      
+  </div>
 </body>
-
 </html>
-
-  
