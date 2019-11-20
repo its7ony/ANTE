@@ -2,6 +2,7 @@ let lugares = [];
 let customMarker = null;
 let customMarkers = [];
 let drawRuta = null;
+let distancia = 0;
 
 function clearMarkers() {
     customMarkers.forEach(m=> m.setMap(null));
@@ -49,6 +50,7 @@ function obtenerPendientes(){
 }
 
 function traerRuta(){
+    distancia = 0;
     clearMarkers();
     let id = document.getElementById("Pendientes").selectedIndex;
     let ruta = lugares[id];
@@ -70,8 +72,18 @@ function traerRuta(){
         }
     });
 
-    let titulo = document.getElementById("Titulo");
-    titulo.textContent = "Rastreo de pedidos: "+ruta.repartidor;
+    for(var i=0; i<ruta.coordenadas.coordenadas.length; i++){
+        if((i+1) ==ruta.coordenadas.coordenadas.length){
+
+        }else{
+            distancia = distancia + calcularDistancia(ruta.coordenadas.coordenadas[i].lat,ruta.coordenadas.coordenadas[i].lng,ruta.coordenadas.coordenadas[(i+1)].lat,ruta.coordenadas.coordenadas[(i+1)].lng);
+        } 
+      }
+
+    let txtTitulo = document.getElementById("Titulo");
+    txtTitulo.textContent = "Rastreo de pedidos: "+ruta.repartidor;
+    let txtDistancia = document.getElementById("Distancia");
+    txtDistancia.textContent = "Distancia: "+distancia.toFixed(2)+"km";
     let array = ruta.coordenadas.coordenadas;
     array.map((info,i)=>{
         customMarker = new google.maps.Marker({
@@ -97,4 +109,20 @@ function traerRuta(){
       });
       // CREAR RUTA EN EL MAPA
       drawRuta.setMap(map);
+
+}
+
+
+function calcularDistancia(lat1, lon1, lat2, lon2) {
+        var radlat1 = Math.PI * lat1/180
+        var radlat2 = Math.PI * lat2/180
+        var theta = lon1-lon2
+        var radtheta = Math.PI * theta/180
+        var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+        dist = Math.acos(dist)
+        dist = dist * 180/Math.PI
+        dist = dist * 60 * 1.1515
+        dist = dist * 1.609344 
+        
+        return dist
 }
