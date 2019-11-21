@@ -4,6 +4,36 @@ let customMarkers = [];
 let drawRuta = null;
 let distancia = 0;
 
+$(document).ready(function(){
+    var socket = io.connect('http://localhost:3000', { 'forceNew': true });
+    
+
+socket.on('coordenadas', function (data) {
+    console.log(data);
+    var obj = data.replace(/'/g,"\"");
+    obj = JSON.parse(obj);
+    let repartidor = new google.maps.LatLng(obj.lat,obj.lng);
+        customMarker = new google.maps.Marker({
+            map: map,
+            draggable: false,
+            animation: google.maps.Animation.DROP,
+            position: repartidor,
+            icon: {                             
+                url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"                           
+            },
+            title: obj.name
+        });
+        
+        
+        customMarker.setMap(map);
+        
+
+    });
+
+})
+
+
+
 function clearMarkers() {
     customMarkers.forEach(m=> m.setMap(null));
     customMarkers = [];
@@ -88,7 +118,7 @@ function traerRuta(){
     array.map((info,i)=>{
         customMarker = new google.maps.Marker({
             map: map,
-            draggable: true,
+            draggable: false,
             animation: google.maps.Animation.DROP,
             position: new google.maps.LatLng(info.lat,info.lng)
             

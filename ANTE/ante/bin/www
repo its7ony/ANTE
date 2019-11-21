@@ -20,7 +20,7 @@ app.set('port', port);
  */
 
 var server = http.createServer(app);
-
+var io = require('socket.io')(server);
 /**
  * Listen on provided port, on all network interfaces.
  */
@@ -88,3 +88,15 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
+
+io.sockets.on('connection', function (socket) {
+  console.log('cliente conectado');
+  socket.on('sendLocation', function (data) {
+    console.log(data);
+    var obj = data.replace(/'/g,"\"");
+    obj = JSON.parse(obj);
+
+    console.log(obj.idRuta);
+      io.sockets.emit('coordenadas', data);
+  });
+})

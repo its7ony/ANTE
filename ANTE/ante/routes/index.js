@@ -5,6 +5,8 @@ router.use(bodyParser.json());
 var mongoCliente = require("mongodb").MongoClient;
 var url  = "mongodb://localhost:27017/ANTE_DB";
 
+
+
 /* GET home_page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
@@ -64,11 +66,15 @@ router.post('/login', function(req, response, next) {
       {
         response.json(0); 
       }else{
-        db.collection("usuarios").find({"username":req.body.user}).toArray(function(err,user){
-          if(user[0].clave == req.body.password){
-            response.json(1);
-          }
-          else{
+        db.collection("usuarios").find({"username":req.body.user,"clave":req.body.password}).toArray(function(err,user){
+          if(user[0] != null){
+            if(user[0].clave == req.body.password){
+              response.json(1);
+            }
+            else{
+              response.json(2);
+            }
+          }else{
             response.json(2);
           }
         }); 
@@ -95,11 +101,11 @@ router.post('/traerRutas', function(req, res, next) {
       db.collection("rutas").find({"repartidor":req.body.user,"estatus":0}).count(function(err,number){
       if(number == 0)
       {
-        response.json(0); 
+        res.json(0); 
       }
       else{
         db.collection("rutas").findOne({"repartidor":req.body.user}).toArray(function(err,ruta){
-          response.json(ruta);
+          res.json(ruta);
         }); 
       }
     });
