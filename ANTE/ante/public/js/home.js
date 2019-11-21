@@ -13,9 +13,14 @@ function enviar(){
                if(data.length > 0){
                     localStorage.setItem('user',data[0].username.toString());
                     localStorage.setItem('rol',data[0].rol.toString());
-                    window.location.href= "http://localhost:3000/main";
+                    alertify
+                    .alert("Inicio de sesion exitoso", function () {
+                        window.location.href= "http://localhost:3000/main";
+                    });
                }else{
-                   alert("Usuario o Contraseña Incorrecto");
+                alertify
+                .alert("Usuario o Contraseña Incorrecto", function () {
+                });
                }
             });
     }

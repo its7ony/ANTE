@@ -36,7 +36,12 @@ function deleteEmployee(id){
     $.post('/deleteEmploye', {user: usuario},
     function (data){
         if(data == "OK"){
+            alertify.success('Empleado eliminado correctamente');
+            getEmployees();
+        }else if(data ==""){
+            alertify.warning('No se puede eliminar el repartidor');
             getEmployees();
         }
+
     });
 }
