@@ -11,4 +11,13 @@ public interface ServiceRetrofit {
     @FormUrlEncoded
     Observable<String> logUser(@Field("user") String username,
                        @Field("password") String password);
+
+    @POST("traerRutas")
+    @FormUrlEncoded
+    Observable<String> getRoutes(@Field("user") String username);
+
+    @POST("updateOrder")
+    @FormUrlEncoded
+    Observable<String> updateRoutes(@Field("user") String username,
+                                    @Field("estatus") String status);
 }

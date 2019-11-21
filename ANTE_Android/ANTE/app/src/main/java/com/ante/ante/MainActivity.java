@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
 
     MaterialEditText edit_user,edit_password;
     Button btn_login;
-    boolean flag = false;
 
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     ServiceRetrofit serviceRetrofit;
@@ -52,12 +51,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 loginUser(edit_user.getText().toString(),edit_password.getText().toString());
-                if(flag = true)
-                {
-                    Intent myIntent = new Intent(MainActivity.this, TrackingActivity.class);
-                    myIntent.putExtra("user",edit_user.getText().toString());
-                    startActivity(myIntent);
-                }
+                /*Intent myIntent = new Intent(MainActivity.this, TrackingActivity.class);
+                myIntent.putExtra("user",edit_user.getText().toString());
+                startActivity(myIntent);*/
             }
         });
 
@@ -81,11 +77,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void accept(String s) throws Exception {
                 String msg = "";
-                if(""+s=="0"){msg = "El usuario no existe";}
-                if(""+s=="1"){flag = true; msg ="Login correcto";}
-                if(""+s=="2") {msg = "Contraseña equivocada";}
+                if(s.equals("0")){msg = "El usuario no existe";}
+                if(s.equals("1")){msg ="Login correcto";
+                    Intent myIntent = new Intent(MainActivity.this, TrackingActivity.class);
+                    myIntent.putExtra("user",edit_user.getText().toString());
+                    startActivity(myIntent);
+                    return;
+                }
+                if(s.equals("2")) {msg = "Contraseña equivocada";}
                 Toast.makeText(MainActivity.this,msg,Toast.LENGTH_SHORT).show();
-            }
+        }
         }));
 
     }

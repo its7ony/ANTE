@@ -5,4 +5,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".TrackingActivity">
 
+
+
+    <Button
+        android:id="@+id/btn_asies"
+        android:layout_margin="0dp"
+        android:background="@color/colorAccent"
+        android:text="Empezar"
+        android:textSize="20dp"
+        android:textColor="@android:color/white"
+        style="@style/TextAppearance.AppCompat.Widget.Button.Borderless.Colored"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 </LinearLayout>
