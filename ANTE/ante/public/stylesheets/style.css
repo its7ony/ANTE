@@ -1,36 +1,132 @@
 /*GLOBAL*/
-
-html, body{
-	margin: 0px;
+html,body{
 	height: 100%;
-	background: #eee;
+	width: 100%;
+	background-color:  #eee;
 }
 
+.fondo{
+	background-color:#eee;
+}
 
+.fondo h1{
+	color:black;
+	font-weight: bold;
+}
+.fondo h2{
+	color:black;
+	font-weight: bold;
+}
+.fondo h3{
+	color:black;
+	font-weight: bold;
+}
+
+.fondo p{
+	color:black;
+	font-weight: bold;
+}
+
+.fondo a{
+	color: black;
+	font-weight: bold;
+}
+
+.fondo textarea{
+	color: black;
+}
+
+.bodyLogin{
+	background-image: url("../images/background.png"); 
+	background-repeat: no-repeat;
+	background-position: center center;  
+	background-size: cover;
+	height: 90%;
+	width: 100%;
+}
+
+.LogotipoHome{
+width: 320px;
+height: 150px;
+}
 /* LOGIN */
-.login{
-    background-color: whitesmoke;
+/*
+COLORES
+ROJO: #B32018
+NARANJA: #FBA01C
+NEGRO: #030002
+BLANCO: #FFFFFF
+*/
+.contendedorL{
+    background-color:rgba(0, 0, 0, 0.5);
     text-align: center;
-    padding: 30px;
-    margin-left: 25%;
-    margin-right: 25%;
-    margin-top: 10%;
-    margin-bottom: 10%;
-    box-shadow: 10px 10px 10px 10px black;
-    border-radius: 20px;
+    padding: 20px;
+    margin-left: 12%;
+    margin-right: 12%;
+    margin-top: 12%;
+}
+
+.contendedorL h3{
+	color: white;
+}
+
+.headerLogin{
+background-color:  #1C1C1F;
+text-align: center;
+padding: 10px;
+}
+
+.boxDesign{
+	background-color: #FBA01C;
+	height: 10px;
+	box-shadow: 2px 7px 2px 1px rgba(0, 0, 0, 0.2);
 }
 
 #imgLogo{
     align-content: center;
     text-align: center;
-    width: 95px;
+    width: 140px;
     height: 95px;
 }
+
 #formLogin{
     font-family: sans-serif;
     font-size: 17px;
     font-style: normal;
 }
+
+#formLogin p input{
+	text-align: center;
+	padding: 10px;
+}
+
+#formLogin p label{
+	color: white;
+}
+
+#formLogin p {
+	margin-left: 10%;
+	margin-right: 10%;
+}
+
+.btnL{
+	padding: 10px;
+	border-radius: 90px;
+	font-family: sans-serif;
+    padding-left: 40px;
+	padding-right: 40px;
+	margin-top: 20px;
+    font-size: 15px;
+    font-weight: 600;
+	background-color:#B32018;
+	color:white;
+}
+
+.btnL:hover{
+	color:white;
+	background-color:rgb(231, 146, 18);
+}
+
 .btn{
     padding: 10px;
     border-radius: 90px;
@@ -40,19 +136,19 @@ html, body{
     font-size: 12px;
     font-weight: 600;
     color: whitesmoke;
-    background-color: cadetblue;
+    background-color: #FBA01C;
 }
-/*DIVISION FONDO ARRIBA*/
-.Fondo2{
-    background-color: black;
-    height: 50%;
-    top: 0px;
-    background-image: url("../images/background.jpg"); 
-}
-/*DIVISION FONDO ABAJO*/
-.Fondo{
-    background-color: #185C3A;
-    height: 100%;
+
+.footer{
+padding-bottom: 0%;
+background-color:  #1C1C1F;
+height: 40px;
+position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  text-align: center;
 }
 
 /*Tabla*/
@@ -62,14 +158,26 @@ html, body{
 	  vertical-align: middle;
 	  font-size:medium;
   }
+
+  .table{
+	  height: 32%;
+	  color: black;
+  }
+
   
   .scrollbar {
 	position: relative;
-	height: 120px;
+	height: 520px;
 	overflow-y: auto;
 	display: block;
 	}
 	
+	.scrollbarOrders {
+		position: relative;
+		height: 120px;
+		overflow-y: auto;
+		display: block;
+		}
 
 
 /*MAPA*/
@@ -79,7 +187,13 @@ html, body{
 }
 
 /*BARRA LATERAL*/
-
+/*
+COLORES
+ROJO: #B32018
+NARANJA: #FBA01C
+NEGRO: #030002
+BLANCO: #FFFFFF
+*/
 .head-title{
 	font-size: 20px;
 	font-weight: bold;
@@ -91,12 +205,12 @@ html, body{
 .navigation{
 	text-align: center;
 	color: white;
-	background: #1C1C1F;
+	background: #030002;
 	height: 100%;
 }
 
 .navigation a{
-	color: #ddd;
+	color: white;
 	margin-top: 20px;
 	margin-bottom: 20px;
 	display: block;
@@ -104,18 +218,18 @@ html, body{
 }
 
 .navigation a:hover{
-	color: white;
+	color: rgb(243, 200, 136);
 }
 
 .navigation .glyphicon{
-	font-size: 25px;
+	font-size: 30px;
 	display: block;
 	width: 100%;
 }
 
 #user_logged{
 	text-decoration: center;
-	background: #1C1C1F;
+	background: #030002;
 	position: absolute;
 	bottom:0px;
 	border-top:1px solid #444;
