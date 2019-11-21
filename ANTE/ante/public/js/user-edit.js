@@ -19,6 +19,14 @@ function updateUser(){
     let paterno = document.getElementById("txtPaterno").value;
     let materno = document.getElementById("txtMaterno").value;
     let pwd = document.getElementById("txtPwd").value;
+
+    if(user == "" || name == "" || paterno == "" || materno == "" || pwd == ""){
+        alertify
+                    .warning("Error al actualizar sus datos, porfavor llene todos los campos", function () {
+                        window.location.reload;
+                    });
+    }
+
     if(user != "" && name != "" && paterno != "" && materno != "" && pwd != ""){
         $.post('/editUser', {username: user, clave:pwd , nombre: name , apellido_paterno: paterno, apellido_materno: materno, rol: 1, estatus: 1},
         function (data){

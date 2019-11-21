@@ -7,14 +7,32 @@ function crear() {
     pwd = md5(pwd);
     pwd = pwd[0] + pwd[1] + pwd[2] + pwd[3] + pwd[4];
 
+    
+
     debugger;
-    $.post('/createEmployee', { username: user, clave: pwd, nombre: name, apellido_paterno: paterno, apellido_materno: materno, rol: 1, disponible: true, estatus: 1 },
+
+
+    if(user == "" || name == "" || paterno == "" || materno == "" || pwd == ""){
+        alertify
+                    .warning("Error al registrar repartidor, porfavor llene todos los campos", function () {
+                        window.location.reload;
+                    });
+    }else{
+        $.post('/createEmployee', { username: user, clave: pwd, nombre: name, apellido_paterno: paterno, apellido_materno: materno, rol: 1, disponible: true, estatus: 1 },
         function (data) {
             if (data == "OK") {
-                alertify
+          
+                
+                    alertify
                     .alert("Repartidor guardado correctamente: "+name+" "+paterno+" "+ "Su contraseña es:" + pwd, function () {
                         window.location.href = "http://localhost:3000/employees";
                     });
-            }
+
+                
+                
+                }
         });
-}
+        
+
+    
+    }}
