@@ -32,16 +32,14 @@ socket.on('coordenadas', function (data) {
             console.log("Terminar");
             let date = new Date();
             let tiempo = date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
-            alertify.success("El pedido ha llegado a su destino", function () {
-                $.post('/updateOrderDone', { user: obj.name, time: tiempo },
-                function (data) {
-                    if (data == "OK") {
-                        window.location.reload;
-                    }
-                });
+
+            $.post('/updateOrderDone', { user: obj.name, time: tiempo },
+            function (data) {
+                if (data == "OK") {
+                    alertify.success('El pedido ha llegado a su destino');
+                }
             });
         }  
-         
     });
 })
 

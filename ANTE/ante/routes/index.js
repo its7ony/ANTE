@@ -243,7 +243,7 @@ router.post('/updateOrderDone', function(req, res, next) {
 
 /*POST create_employee*/ 
 router.post('/createEmployee', function(req, res, next){
-    let query = {username: req.body.username, clave: req.body.clave, nombre: req.body.nombre , apellido_paterno: req.body.apellido_paterno, apellido_materno: req.body.apellido_materno, rol: 1, disponible: req.body.disponible, estatus: 1}
+    let query = {username: req.body.username, clave: req.body.clave, nombre: req.body.nombre , apellido_paterno: req.body.apellido_paterno, apellido_materno: req.body.apellido_materno, rol: 1, disponible: true, estatus: 1}
     mongoCliente.connect(url, function(err, db) {
       if (err) throw err;  
       db.collection('usuarios').insert(query, function(err, result) {
