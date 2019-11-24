@@ -104,7 +104,7 @@ router.post('/traerRutas', function(req, res, next) {
         res.json(0); 
       }
       else{
-        db.collection("rutas").findOne({"repartidor":req.body.user}).toArray(function(err,ruta){
+        db.collection("rutas").find({"repartidor":req.body.user}).toArray(function(err,ruta){
           res.json(ruta);
         }); 
       }
@@ -216,7 +216,7 @@ router.post('/updateOrder', function(req, res, next) {
   let user = req.body.user;
   mongoCliente.connect(url, function(err, db) {
     if (err) throw err;  
-    db.collection('rutas').update({username: user, estatus:0}, {$set: {estatus: 1}}, function(err, result) {
+    db.collection('rutas').update({repartidor: user, estatus:0}, {$set: {estatus: 1}}, function(err, result) {
       if (err) throw err;
       console.log("Documento actualizado");
       res.send("OK");
@@ -232,7 +232,7 @@ router.post('/updateOrderDone', function(req, res, next) {
   let final_time = req.body.time;
   mongoCliente.connect(url, function(err, db) {
     if (err) throw err;  
-    db.collection('rutas').update({username: user, estatus:1}, {$set: {estatus: 2, tiempo_Final:final_time}}, function(err, result) {
+    db.collection('rutas').update({repartidor: user, estatus:1}, {$set: {estatus: 2, tiempo_Final:final_time}}, function(err, result) {
       if (err) throw err;
       console.log("Documento actualizado");
       res.send("OK");

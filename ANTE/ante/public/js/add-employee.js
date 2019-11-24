@@ -7,7 +7,6 @@ function crear() {
     pwd = md5(pwd);
     pwd = pwd[0] + pwd[1] + pwd[2] + pwd[3] + pwd[4];
 
-    debugger;
     $.post('/createEmployee', { username: user, clave: pwd, nombre: name, apellido_paterno: paterno, apellido_materno: materno, rol: 1, disponible: true, estatus: 1 },
         function (data) {
             if (data == "OK") {
