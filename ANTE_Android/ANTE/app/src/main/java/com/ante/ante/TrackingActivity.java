@@ -28,6 +28,12 @@ import java.net.URISyntaxException;
 import com.google.android.gms.common.api.GoogleApi;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -38,17 +44,19 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 
-public class TrackingActivity extends AppCompatActivity {
+public class TrackingActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     //Declaring necessary stuff for later
     private Button btn_asies;
+    private GoogleMap mMap;
+    private String usuarioGlob= "";
     private CompositeDisposable compositeDisposable = new CompositeDisposable();
     private ServiceRetrofit serviceRetrofit;
     private String rute = "";
     private JSONObject obj;
     private LocationManager locationManager;
     private LocationListener locationListener;
-
+    private int statusRuta = 0;
     //Socket declaration + location
     private Socket mSocket;
 
@@ -64,7 +72,7 @@ public class TrackingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tracking);
         //Shit from other activity
-        final String user = getIntent().getExtras().getString("user");
+        usuarioGlob = getIntent().getExtras().getString("user");
         //Need that btn
         btn_asies = findViewById(R.id.btn_asies);
 
@@ -72,11 +80,8 @@ public class TrackingActivity extends AppCompatActivity {
         Retrofit clientRetrofit = ClientRetrofit.getInstance();
         serviceRetrofit = clientRetrofit.create(ServiceRetrofit.class);
 
-		//Connection w socket
-		mSocket.connect();
-
         //Getting the route id for wtv reason
-        String ruta = traerRuta(user);
+        String ruta = traerRuta(usuarioGlob);
         try {
             obj = new JSONObject(ruta);
             Log.e("esta", obj.getString("idRuta"));
@@ -90,8 +95,10 @@ public class TrackingActivity extends AppCompatActivity {
         locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
-                String objeto = "{\"name\":" + "'" + user + "'" + ",\"lat\":" + location.getLatitude() + ",\"lng\":" + location.getLongitude() + "}";
+                mSocket.connect();
+                String objeto = "{\"name\":" + "'" + usuarioGlob + "'" + ",\"lat\":" + location.getLatitude() +",\"statusRuta\":" + statusRuta +",\"lng\":" + location.getLongitude() + "}";
                 mSocket.emit("sendLocation", objeto);
+                if(statusRuta == 2){locationManager.removeUpdates(locationListener);}
             }
 
             @Override
@@ -118,6 +125,22 @@ public class TrackingActivity extends AppCompatActivity {
         }else{
             startLocation();
         }
+        //Mapping stuff
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
+
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+
+        // Add a marker in Sydney and move the camera
+        LatLng sydney = new LatLng(21.150908, -101.71110470000002);
+        mMap.addMarker(new MarkerOptions().position(sydney).title("Comienzo"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(sydney ,18));
     }
 
     @Override
@@ -134,7 +157,15 @@ public class TrackingActivity extends AppCompatActivity {
         btn_asies.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                locationManager.requestLocationUpdates("gps", 5000, 0, locationListener);
+                if (statusRuta == 0){
+                locationManager.requestLocationUpdates("gps", 100, 0, locationListener);
+                statusRuta = 1;
+                actualizarRuta(usuarioGlob);
+                btn_asies.setText("Terminar");
+                }else{
+                    statusRuta = 2;
+                    Toast.makeText(TrackingActivity.this, "picasion", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -147,21 +178,18 @@ public class TrackingActivity extends AppCompatActivity {
                     @Override
                     public void accept(String s) throws Exception {
                         rute = s;
-                        Toast.makeText(TrackingActivity.this, s, Toast.LENGTH_SHORT).show();
                     }
                 }));
         return rute;
     }
 
-    private void actualizarRuta(String user, String status) {
-        compositeDisposable.add(serviceRetrofit.updateRoutes(user, status)
+    private void actualizarRuta(String user) {
+        compositeDisposable.add(serviceRetrofit.updateRoutes(user)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String s) throws Exception {
-                        rute = s;
-                        Toast.makeText(TrackingActivity.this, s, Toast.LENGTH_SHORT).show();
                     }
                 }));
     }

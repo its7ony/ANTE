@@ -18,6 +18,5 @@ public interface ServiceRetrofit {
 
     @POST("updateOrder")
     @FormUrlEncoded
-    Observable<String> updateRoutes(@Field("user") String username,
-                                    @Field("estatus") String status);
+    Observable<String> updateRoutes(@Field("user") String username);
 }
