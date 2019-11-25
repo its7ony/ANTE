@@ -42,6 +42,10 @@ function obtenerOrdenes(){
                 <td scope="col">${info.id}</td>
                 <td scope="col">Entregado</td>
                 <td scope="col">${info.repartidor}</td>
+                <td scope="col">${info.fecha}</td>
+                <td scope="col">${info.tiempo_Inicial}</td>
+                <td scope="col">${info.tiempo_Final}</td>
+                
             </tr>`;
         });
      
